@@ -24,7 +24,7 @@ if ($ENV{GITHUB_ACTIONS} eq 'true') {
     }
   }
 
-  @paths ||= (getcwd);
+  @paths = (getcwd) unless @arr;
 
   foreach my $path (@paths) {
     chdir($path);
