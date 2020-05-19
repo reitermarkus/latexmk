@@ -5,6 +5,7 @@ ENV MANPATH="/usr/local/texlive/texmf-dist/doc/man:${MANPATH}" \
     PATH="/usr/local/texlive/bin/x86_64-linuxmusl:${PATH}"
 
 RUN apk add --no-cache \
+      fontconfig \
       perl \
       wget \
  && wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
