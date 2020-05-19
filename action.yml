@@ -4,18 +4,16 @@ branding:
   icon: 'book'
   color: 'purple'
 inputs:
-  latexmkrc:
-    description: 'path to the `.latexmkrc` file'
+  directory:
+    description: 'Directory in which to run `latexmk`.'
     required: false
-    default: '.latexmkrc'
   args:
-    description: 'arguments passed to `latexmk`'
-    required: true
+    description: 'Arguments passed to `latexmk`.'
+    required: false
     default: '-cd'
 runs:
   using: 'docker'
   image: 'reitermarkus/latexmk'
-  env:
-    LATEXMKRC: ${{ inputs.latexmkrc }}
   args:
-    - ${{ inputs.args }}
+    - '${{ inputs.directory }}'
+    - '${{ inputs.args }}'

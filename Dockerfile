@@ -3,7 +3,6 @@ FROM alpine
 ENV PATH="/usr/local/texlive/bin/x86_64-linuxmusl:${PATH}"
 
 RUN apk add --no-cache \
-      bash \
       perl \
  && apk add --update-cache --virtual install-dependencies  \
       wget \
@@ -28,5 +27,5 @@ RUN apk add --no-cache \
  && rm -r texlive \
  && tlmgr update --all --self --reinstall-forcibly-removed
 
-COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT /entrypoint.sh
+COPY entry.pl /entry.pl
+ENTRYPOINT /entry.pl

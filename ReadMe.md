@@ -5,13 +5,13 @@ This action compiles one or more TeX files using Latexmk.
 
 ## Inputs
 
-### `latexmkrc`
+### `directory`
 
-**Optional** Path to the `.latexmkrc` file. By default, the action will search for all `latexmkrc` and `.latexmkrc` files and compile all of them.
+**Optional** Directory in which to run `latexmk`. By default, the action will run `latexmk` in all directories containing a `latexmkrc` or `.latexmkrc` file.
 
 ### `args`
 
-**Optional** Arguments passed to `latexmk`. Default: `-cd`
+**Optional** Arguments passed to `latexmk`. Defaults to `-cd`.
 
 
 ## Example Usage
@@ -19,5 +19,5 @@ This action compiles one or more TeX files using Latexmk.
 ```yml
 uses: reitermarkus/latexmk@master
 with:
-  args: ''
+  directory: thesis
 ```
