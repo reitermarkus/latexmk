@@ -1,0 +1,18 @@
+name: 'Latexmk'
+description: 'Run `latexmk` to compile one or more TeX files.'
+inputs:
+  latexmkrc:
+    description: 'path to the `.latexmkrc` file'
+    required: false
+    default: '.latexmkrc'
+  args:
+    description: 'arguments passed to `latexmk`'
+    required: true
+    default: '-cd'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    LATEXMKRC: ${{ inputs.latexmkrc }}
+  args:
+    - ${{ inputs.args }}
