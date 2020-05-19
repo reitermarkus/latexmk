@@ -13,7 +13,7 @@ inputs:
     default: '-cd'
 runs:
   using: 'docker'
-  image: 'reitermarkus/latexmk'
+  image: 'docker://reitermarkus/latexmk'
   args:
     - '${{ inputs.directory }}'
     - '${{ inputs.args }}'
