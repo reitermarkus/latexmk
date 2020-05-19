@@ -25,7 +25,8 @@ RUN apk add --no-cache \
  && ./install-tl --profile texlive.profile \
  && cd .. \
  && rm -r texlive \
- && tlmgr update --all --self --reinstall-forcibly-removed
+ && tlmgr update --all --self --reinstall-forcibly-removed \
+ && tlmgr backup --all --clean
 
 COPY entry.pl /entry.pl
 ENTRYPOINT /entry.pl
