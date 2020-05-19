@@ -1,10 +1,11 @@
 FROM alpine
 
-ENV PATH="/usr/local/texlive/bin/x86_64-linuxmusl:${PATH}"
+ENV MANPATH="/usr/local/texlive/texmf-dist/doc/man:${MANPATH}" \
+    INFOPATH="/usr/local/texlive/texmf-dist/doc/info:${INFOPATH}" \
+    PATH="/usr/local/texlive/bin/x86_64-linuxmusl:${PATH}"
 
 RUN apk add --no-cache \
       perl \
- && apk add --update-cache --virtual install-dependencies  \
       wget \
  && wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
  && mkdir texlive \
@@ -14,19 +15,14 @@ RUN apk add --no-cache \
  && { \
       echo 'selected_scheme scheme-full'; \
       echo 'TEXDIR /usr/local/texlive'; \
-      echo 'TEXMFCONFIG ~/.texlive/texmf-config'; \
-      echo 'TEXMFHOME ~/texmf'; \
       echo 'TEXMFLOCAL /usr/local/texlive/texmf-local'; \
       echo 'TEXMFSYSCONFIG /usr/local/texlive/texmf-config'; \
       echo 'TEXMFSYSVAR /usr/local/texlive/texmf-var'; \
+      echo 'TEXMFCONFIG ~/.texlive/texmf-config'; \
       echo 'TEXMFVAR ~/.texlive/texmf-var'; \
+      echo 'TEXMFHOME ~/texmf'; \
     } > texlive.profile \
- && ( \
-      ./install-tl --profile texlive.profile || \
-      ./install-tl --profile texlive.profile || \
-      ./install-tl --profile texlive.profile \
-    ) \
- && apk del install-dependencies \
+ && ./install-tl --profile texlive.profile \
  && cd .. \
  && rm -r texlive \
  && tlmgr update --all --self --reinstall-forcibly-removed
