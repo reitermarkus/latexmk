@@ -27,6 +27,10 @@ jobs:
             -t '${{ github.actor }}/latexmk' \
             -f Dockerfile \
             .
+      - name: Test Action
+        uses: ./
+        with:
+          args: '-h'
       - name: Log into Docker Hub
         run: echo '${{ secrets.DOCKER_TOKEN }}' | docker login -u '${{ github.actor }}' --password-stdin
       - name: Push Docker Image
