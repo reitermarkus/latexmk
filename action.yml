@@ -11,7 +11,7 @@ inputs:
     default: '-cd'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'reitermarkus/latexmk'
   env:
     LATEXMKRC: ${{ inputs.latexmkrc }}
   args:
