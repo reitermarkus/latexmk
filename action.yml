@@ -1,5 +1,8 @@
 name: 'Latexmk'
 description: 'Run `latexmk` to compile one or more TeX files.'
+branding:
+  icon: 'book'
+  color: 'purple'
 inputs:
   latexmkrc:
     description: 'path to the `.latexmkrc` file'
