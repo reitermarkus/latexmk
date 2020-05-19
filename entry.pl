@@ -8,12 +8,12 @@ use Text::ParseWords;
 use File::Spec;
 
 if ($ENV{GITHUB_ACTIONS} eq 'true') {
-  my $path = $ARGV[0];
+  my $path = $ARGV[0] unless $ARGV[0] eq '';
   my @args = shellwords($ARGV[1]);
 
   my @paths;
 
-  if (defined $path && $path ne '') {
+  if ($path) {
     @paths = (File::Spec->rel2abs($path));
   } else {
     find({ wanted => \&wanted, follow => 1, follow_skip => 2 }, '.');
@@ -24,10 +24,10 @@ if ($ENV{GITHUB_ACTIONS} eq 'true') {
     }
   }
 
-  @paths = (getcwd) unless @arr;
+  @paths = (getcwd) unless @paths;
 
   foreach my $path (@paths) {
-    chdir($path);
+    chdir($path) or die "Directory '$path' does not exist.\n";
     system('latexmk', @args) == 0 or exit($? >> 8)
   }
 } else {
