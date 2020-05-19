@@ -21,7 +21,11 @@ RUN apk add --no-cache \
       echo 'TEXMFSYSVAR /usr/local/texlive/texmf-var'; \
       echo 'TEXMFVAR ~/.texlive/texmf-var'; \
     } > texlive.profile \
- && ./install-tl --profile texlive.profile \
+ && ( \
+      ./install-tl --profile texlive.profile || \
+      ./install-tl --profile texlive.profile || \
+      ./install-tl --profile texlive.profile \
+    ) \
  && apk del install-dependencies \
  && cd .. \
  && rm -r texlive \
