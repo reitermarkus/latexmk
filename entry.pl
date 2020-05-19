@@ -33,4 +33,3 @@ if ($ENV{GITHUB_ACTIONS} eq 'true') {
 } else {
   exec('latexmk', @ARGV)
 }
-

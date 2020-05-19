@@ -42,5 +42,5 @@ RUN apk add --no-cache \
       /usr/local/texlive/texmf-dist/source \
       /usr/local/texlive/texmf-dist/fonts/source
 
-COPY entry.pl /entry.pl
-ENTRYPOINT /entry.pl
+COPY entry.pl /
+ENTRYPOINT ["/entry.pl"]
