@@ -1,10 +1,11 @@
 FROM alpine
 
+ENV PATH="/usr/local/texlive/bin/x86_64-linuxmusl:${PATH}"
+
 RUN apk add --no-cache \
       bash \
-      perl
-
-RUN apk add --update-cache --virtual install-dependencies  \
+      perl \
+ && apk add --update-cache --virtual install-dependencies  \
       wget \
  && wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
  && mkdir texlive \
@@ -26,8 +27,6 @@ RUN apk add --update-cache --virtual install-dependencies  \
  && cd .. \
  && rm -r texlive \
  && tlmgr update --all --self --reinstall-forcibly-removed
-
-ENV PATH="/usr/local/texlive/bin/x86_64-linuxmusl:${PATH}"
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
