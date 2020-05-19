@@ -24,7 +24,7 @@ if ($ENV{GITHUB_ACTIONS} eq 'true') {
     }
   }
 
-  @paths or die "No `latexmkrc` or `.latexmkrc` files found. Please specify an explicit `path`.\n";
+  @paths ||= (getcwd);
 
   foreach my $path (@paths) {
     chdir($path);
