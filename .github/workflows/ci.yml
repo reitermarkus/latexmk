@@ -1,4 +1,8 @@
-on: [pull_request, push]
+on:
+  pull_request:
+  push:
+  schedule:
+    - cron: '* 3 * * 0' # every Sunday at 3 AM
 
 name: CI
 
