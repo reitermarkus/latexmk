@@ -26,7 +26,20 @@ RUN apk add --no-cache \
  && cd .. \
  && rm -r texlive \
  && tlmgr update --all --self --reinstall-forcibly-removed \
- && tlmgr backup --all --clean
+ && tlmgr backup --all --clean \
+ && rm \
+      /usr/local/texlive/install-tl.log \
+      /usr/local/texlive/texmf-var/web2c/tlmgr.log \
+      /usr/local/texlive/texmf-var/web2c/updmap.log \
+      /usr/local/texlive/doc.html \
+      /usr/local/texlive/index.html \
+ && rm -r \
+      /usr/local/texlive/readme-html.dir \
+      /usr/local/texlive/readme-txt.dir \
+      /usr/local/texlive/install-tl \
+      /usr/local/texlive/texmf-dist/doc \
+      /usr/local/texlive/texmf-dist/source \
+      /usr/local/texlive/texmf-dist/fonts/source
 
 COPY entry.pl /entry.pl
 ENTRYPOINT /entry.pl
