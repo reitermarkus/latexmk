@@ -13,7 +13,7 @@ jobs:
       - name: Fetch Repository
         uses: actions/checkout@v2
       - name: Run ShellCheck
-        uses: azohra/shell-linter@v0.3.0
+        uses: azohra/shell-linter@v0.6.0
   build:
     runs-on: ubuntu-latest
     steps:
