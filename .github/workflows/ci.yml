@@ -7,31 +7,14 @@ on:
 name: CI
 
 jobs:
-  shellcheck:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch Repository
+      - name: Checkout repository 
         uses: actions/checkout@v3
-      - name: Run ShellCheck
-        uses: azohra/shell-linter@v0.6.0
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build Docker Image
-        run: |
-          docker pull '${{ github.actor }}/latexmk' || true
-          docker build \
-            --pull \
-            --cache-from '${{ github.actor }}/latexmk' \
-            -t '${{ github.actor }}/latexmk' \
-            -f Dockerfile \
-            .
       - name: Test Action
         uses: ./
         with:
           args: '-h'
-      - name: Log into Docker Hub
-        run: echo '${{ secrets.DOCKER_TOKEN }}' | docker login -u '${{ github.actor }}' --password-stdin
-      - name: Push Docker Image
-        run: docker push '${{ github.actor }}/latexmk'
+  build-push:
+    uses: reitermarkus/.github/.github/workflows/docker-build-push.yml@main
