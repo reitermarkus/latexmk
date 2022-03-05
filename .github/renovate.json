@@ -5,7 +5,7 @@
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["registry.gitlab.com/islandoftex/images/texlive"],
-      "allowedVersions": "/^v?TL\\d+(?:-\\d+){5}?$/"
+      "allowedVersions": "/^v?TL[0-9]+(-[0-9]+){5}?$/"
     }
   ]
 }
