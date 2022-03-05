@@ -1,5 +1,6 @@
 name: 'Latexmk'
 description: 'Run `latexmk` to compile one or more TeX files.'
+author: reitermarkus
 branding:
   icon: 'book'
   color: 'purple'
