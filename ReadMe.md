@@ -17,7 +17,7 @@ This action compiles one or more TeX files using Latexmk.
 ## Example Usage
 
 ```yml
-uses: reitermarkus/latexmk@master
+uses: reitermarkus/latexmk@main
 with:
   directory: thesis
 ```
