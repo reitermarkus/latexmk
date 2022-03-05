@@ -2,7 +2,7 @@ on:
   pull_request:
   push:
   schedule:
-    - cron: '* 3 * * 0' # every Sunday at 3 AM
+    - cron: '16 20 * * 6'
 
 name: CI
 
