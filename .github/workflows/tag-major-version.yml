@@ -1,4 +1,4 @@
-name: Tag major action version
+name: Tag major version
 
 on:
   release:
