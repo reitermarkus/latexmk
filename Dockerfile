@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/islandoftex/images/texlive:TL2021-2022-03-13-04-43
+FROM registry.gitlab.com/islandoftex/images/texlive:TL2022-2022-04-04-11-43
 
 RUN tlmgr update --all --self --reinstall-forcibly-removed \
  && tlmgr backup --all --clean
